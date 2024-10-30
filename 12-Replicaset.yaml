@@ -30,3 +30,20 @@ spec:
       containers:
       - name: nginx
         image: nginx
+---
+apiVersion: v1
+kind: Service
+metadata: 
+  name: samplecluster
+spec:
+  selector:
+    tier: frontend
+    app: guestbook
+    project: expense
+    environment: dev
+    org: joindevops
+  ports:
+  - name: sample-service-port
+    protocol: TCP
+    port: 80
+    targetPort: 80
