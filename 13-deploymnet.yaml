@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Duployment
+metadata:
+  name: frontend
+  labels:
+    app: guestbook
+    tier: frontend
+    project: expense
+    environment: dev
+    org: joindevops
+spec:
+  # modify replicas according to your case
+  replicas: 3
+  selector:
+    matchLabels:
+      app: guestbook
+      tier: frontend
+      project: expense
+      environment: dev
+      org: joindevops
+  template:
+    metadata:
+      labels:
+        tier: frontend
+        app: guestbook
+        project: expense
+        environment: dev
+        org: joindevops
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+---
+apiVersion: v1
+kind: Service
+metadata: 
+  name: samplecluster
+spec:
+  selector:
+    project: expense
+    environment: dev
+    org: joindevops
+  ports:
+  - name: sample-service-port
+    protocol: TCP
+    port: 80
+    targetPort: 80
