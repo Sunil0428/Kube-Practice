@@ -1,1 +1,7 @@
-hii hellooo
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: expense
+  labels:
+    project: expense
+    encironment: dev
