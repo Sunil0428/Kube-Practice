@@ -10,4 +10,5 @@ spec:
     org: joindevops
   ports:
   - port: 80
+    name: sample-service-port
     targetPort: 8080
