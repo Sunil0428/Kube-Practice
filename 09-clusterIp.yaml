@@ -11,4 +11,4 @@ spec:
   ports:
   - port: 80
     name: sample-service-port
-    targetPort: 8080
+    targetPort: 80
