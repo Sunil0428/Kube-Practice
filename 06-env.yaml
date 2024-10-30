@@ -9,7 +9,7 @@ spec:
     env: 
     - name: environment
       valueFrom:
-        configKeyRef:
+        configMapKeyRef:
           name: myconfigmap
           key: environmnet
     - name: location
