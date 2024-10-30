@@ -14,7 +14,7 @@ spec:
           key: environmnet
     - name: location
       valueFrom:
-        configKeyRef:
+        configMapKeyRef:
           name: myconfigmap
           key: location
     - name: DB_URL
