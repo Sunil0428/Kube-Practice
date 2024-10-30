@@ -8,7 +8,15 @@ spec:
     image: nginx:1.14.2
     env: 
     - name: environment
-      value: dev
+      valueFrom:
+        configKeyRef:
+          name: myconfigmap
+          key: environmnet
+    - name: location
+      valueFrom:
+        configKeyRef:
+          name: myconfigmap
+          key: location
     - name: DB_URL
       valueFrom:
         secretKeyRef:
