@@ -37,8 +37,6 @@ metadata:
   name: samplecluster
 spec:
   selector:
-    tier: frontend
-    app: guestbook
     project: expense
     environment: dev
     org: joindevops
