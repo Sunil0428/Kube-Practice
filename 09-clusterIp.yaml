@@ -3,12 +3,12 @@ kind: Service
 metadata: 
   name: samplecluster
 spec:
-  type: ClusterIP
   selector:
     project: expense
     environment: dev
     org: joindevops
   ports:
-  - port: 80
-    name: sample-service-port
+  - name: sample-service-port
+    protocol: TCP
+    port: 80
     targetPort: 80
