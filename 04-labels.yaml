@@ -2,11 +2,12 @@ apiVersion: v1
 kind: Pod
 metadata: 
   name: labelsdemo
+  labels:
+    project: expense
+    environment: dev
+    org: joindevops
 spec:
   containers:
     name: nginx
     image: nginx:1.14.2
-    labels:
-      project: expense
-      environment: dev
-      org: joindevops
+   
