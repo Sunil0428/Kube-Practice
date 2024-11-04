@@ -30,6 +30,8 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: ebs-static
+  labels:
+    type: ebs-static
 spec:
   containers:
   - name: nginx
@@ -41,3 +43,16 @@ spec:
   - name: ebs-static
     persistentVolumeClaim:
       claimName: ebs-static
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-loadbalancer-service
+spec:
+  type: LoadBalancer
+  selector:
+    type: ebs-static
+  ports:
+    - port: 80              # External port to expose
+      targetPort: 80     # Port on the Pod where the application listens
+      nodePort: 30007
