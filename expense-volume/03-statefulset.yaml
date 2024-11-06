@@ -29,22 +29,25 @@ spec:
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: mysql
-  namespace: expense
+  name: ebs-statefull
 spec:
-  serviceName: "mysql-headless"  # this should be the name of headless service
-  replicas: 2
   selector:
     matchLabels:
       type: ebs-stateful
+  serviceName: "mysql-headless"
+  replicas: 3 # by default is 1
   template:
     metadata:
       labels:
-        type: ebs-stateful
+        type: ebs-stateful # has to match .spec.selector.matchLabels
     spec:
+      
       containers:
       - name: mysql
         image: sunil0428/mysql:v1
+        ports:
+        - containerPort: 3306
+          name: ebs-stateful
         volumeMounts:
         - name: ebs-stateful
           mountPath: /var/lib/mysql
@@ -53,7 +56,7 @@ spec:
       name: ebs-stateful
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      storageClassName: expense-ebs-sc
+      storageClassName: "my-storage-class"
       resources:
         requests:
           storage: 1Gi
