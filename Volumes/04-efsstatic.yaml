@@ -26,3 +26,34 @@ spec:
   resources:
     requests:
       storage: 5Gi
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: efs-static
+  labels:
+    type: efs-static
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    volumeMounts:
+    - name: efs-static
+      mountPath: /usr/share/nginx/html
+  volumes:
+  - name: efs-static
+    persistentVolumeClaim:
+      claimName: efs-static
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-loadbalancer-service
+spec:
+  type: LoadBalancer
+  selector:
+    type: efs-static
+  ports:
+    - port: 80              # External port to expose
+      targetPort: 80     # Port on the Pod where the application listens
+      nodePort: 30007
