@@ -46,14 +46,14 @@ spec:
       - name: mysql
         image: sunil0428/mysql:v1
         volumeMounts:
-        - name: www
+        - name: ebs-stateful
           mountPath: /var/lib/mysql
   volumeClaimTemplates:
   - metadata:
       name: ebs-stateful
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      storageClassName: "expense-ebs-sc"
+      storageClassName: expense-ebs-sc
       resources:
         requests:
           storage: 1Gi
