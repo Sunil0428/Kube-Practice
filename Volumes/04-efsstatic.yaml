@@ -38,12 +38,12 @@ spec:
   - name: nginx
     image: nginx
     volumeMounts:
-    - name: efs-static
+    - name: expense-efs
       mountPath: /usr/share/nginx/html
   volumes:
-  - name: efs-static
+  - name: expense-efs
     persistentVolumeClaim:
-      claimName: efs-static
+      claimName: expense-claim
 ---
 apiVersion: v1
 kind: Service
