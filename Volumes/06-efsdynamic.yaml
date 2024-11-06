@@ -26,7 +26,7 @@ spec:
   volumes:
   - name: efs-dynamic
     persistentVolumeClaim:
-      claimName: ebs-dynamic
+      claimName: efs-dynamic
 ---
 apiVersion: v1
 kind: Service
