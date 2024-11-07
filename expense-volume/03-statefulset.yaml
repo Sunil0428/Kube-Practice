@@ -36,6 +36,15 @@ spec:
       type: ebs-stateful
   serviceName: "mysql-headless"
   replicas: 3 # by default is 1
+  affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: topology.kubernetes.io/zone
+              operator: In
+              values:
+                - us-east-1b
   template:
     metadata:
       labels:
